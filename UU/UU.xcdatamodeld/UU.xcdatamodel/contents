@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AllMessage" representedClassName="AllMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="headtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messagePic" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="messagetext" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UsersLogin" inverseName="newRelationship" inverseEntity="UsersLogin" syncable="YES"/>
+        <relationship name="newRelationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotoBook" inverseName="newRelationship" inverseEntity="NotoBook" syncable="YES"/>
+    </entity>
+    <entity name="ChatHistory" representedClassName="ChatHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="chatImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="chatSend" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="chatText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chatTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="me" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readAlready" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="you" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MyNotoBook" representedClassName="MyNotoBook" syncable="YES" codeGenerationType="class">
+        <attribute name="notoDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notoImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="notoName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notoTextView" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NotoBook" representedClassName="NBook" syncable="YES" codeGenerationType="class">
+        <attribute name="notoDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notoHeader" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notoImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="notoMeassage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notoName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllMessage" inverseName="newRelationship1" inverseEntity="AllMessage" syncable="YES"/>
+    </entity>
+    <entity name="SearchRouteLine" representedClassName="SearchRouteLine" syncable="YES" codeGenerationType="class">
+        <attribute name="addTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endLatitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endLongitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="endName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="searchStyle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startLatitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startLongitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="startName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UsersLogin" representedClassName="UsersLoginInfo" syncable="YES" codeGenerationType="class">
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPwd" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllMessage" inverseName="newRelationship" inverseEntity="AllMessage" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AllMessage" positionX="-63" positionY="0" width="128" height="135"/>
+        <element name="ChatHistory" positionX="27" positionY="126" width="128" height="150"/>
+        <element name="MyNotoBook" positionX="27" positionY="126" width="128" height="105"/>
+        <element name="NotoBook" positionX="-63" positionY="153" width="128" height="135"/>
+        <element name="UsersLogin" positionX="117" positionY="6" width="128" height="88"/>
+        <element name="SearchRouteLine" positionX="27" positionY="126" width="128" height="180"/>
+    </elements>
+</model>

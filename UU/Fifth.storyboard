@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Wt Forecast View Controller-->
+        <scene sceneID="6aF-xZ-qIQ">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-Bec-nd-YmG" id="Bec-nd-YmG" customClass="wtForecastViewController" customModule="UU" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4Y1-jN-cR5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="S0B-0m-3h9">
+                            <connections>
+                                <segue destination="3XJ-la-Dpj" kind="show" id="a3j-GJ-Dgz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0j-oY-BXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3285" y="1580"/>
+        </scene>
+        <!--Wt City View Controller-->
+        <scene sceneID="mhf-mF-zcb">
+            <objects>
+                <viewController storyboardIdentifier="wt" id="3XJ-la-Dpj" customClass="wtCityViewController" customModule="UU" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="96s-EL-jTa"/>
+                        <viewControllerLayoutGuide type="bottom" id="0RY-oV-58h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CF4-sx-SNn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jxh-m4-pLl">
+                                <rect key="frame" x="0.0" y="64" width="320" height="218"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Msm-tM-oTy">
+                                        <rect key="frame" x="24" y="78" width="272" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.29999999999999999" height="0.29999999999999999"/>
+                                    </pickerView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="地址-2" translatesAutoresizingMaskIntoConstraints="NO" id="HAQ-Yc-lm2">
+                                        <rect key="frame" x="40" y="37" width="15" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="省市" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odL-Qz-WWL">
+                                        <rect key="frame" x="72" y="29" width="191" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jvn-rq-vPk">
+                        <barButtonItem key="leftBarButtonItem" title="返回" id="WZc-eJ-Tgg">
+                            <connections>
+                                <action selector="backButton:" destination="3XJ-la-Dpj" id="aaK-6R-ex9"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="选择" id="8Xh-q6-6s3">
+                            <connections>
+                                <action selector="selecteArea:" destination="3XJ-la-Dpj" id="0gB-Ov-52R"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="areaPickerView" destination="Msm-tM-oTy" id="sUs-DO-on6"/>
+                        <outlet property="cityTextField" destination="odL-Qz-WWL" id="bwZ-8S-3IT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lMx-Td-Rrp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5467.5" y="1578.1690140845071"/>
+        </scene>
+        <!--天气-->
+        <scene sceneID="iSP-n0-Vp7">
+            <objects>
+                <navigationController storyboardIdentifier="UINavigationController-Zwe-mS-OCq" automaticallyAdjustsScrollViewInsets="NO" id="Zwe-mS-OCq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="天气" image="天气-2" selectedImage="天气-3" id="s1v-Cm-VT9"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tdI-jd-XOB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Bec-nd-YmG" kind="relationship" relationship="rootViewController" id="itj-1M-vMO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Sx-BZ-qKE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2544" y="1581"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zAM-yA-MjD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OlD-f3-dAr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="05Y-qt-qBi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3XJ-la-Dpj" kind="relationship" relationship="rootViewController" id="JTj-cy-sYP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nEY-GR-AWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4470" y="1578.1690140845071"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="地址-2" width="16" height="16"/>
+        <image name="天气-2" width="32" height="32"/>
+        <image name="天气-3" width="48" height="48"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="a3j-GJ-Dgz"/>
+    </inferredMetricsTieBreakers>
+</document>
