@@ -20,9 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager = CLLocationManager()
     let APIKey = "21ac267e51062ee288ef1536db0c24bf"
     
+    //qq登录
+    var tencentAuth: TencentOAuth!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
  
+        //qq登录初始化
+        tencentAuth = TencentOAuth(appId: "1106056187", andDelegate: self)
                 
         UINavigationBar.appearance().barTintColor = UIColor.init(red: 65/245, green: 65/225, blue: 65/225, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
@@ -44,9 +48,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    //qq登录到代理方法
+    func tencentDidLogin() {
+        // 登录成功后要调用一下这个方法, 才能获取到个人信息
+        self.tencentAuth.getUserInfo()
+    }
+    
+    func tencentDidNotNetWork() {
+        // 网络异常
+    }
+    
+    func tencentDidNotLogin(_ cancelled: Bool) {
+        
+    }
+    
+    func getUserInfoResponse(_ response: APIResponse!) {
+        // 获取个人信息
+        if response.retCode == 0 {
+            
+            if let res = response.jsonResponse {
+                
+                if (self.tencentAuth.getUserOpenID()) != nil {
+                    // 获取uid
+                }
+                
+                if res["nickname"] != nil {
+                    // 获取nickname
+                    print(res["nickname"])
+                }
+                
+                if res["gender"] != nil {
+                    // 获取性别
+                }
+                
+                if res["figureurl_qq_2"] != nil {
+                    // 获取头像
+                }
+                
+            }
+        } else {
+            // 获取授权信息异常
+        }
+    }
+    
+
+    
     func application(_ app: UIApplication, open url: URL,
                      options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-     return false
+        //qq登录
+        let urlKey: String = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String
+        
+        if urlKey == "5ps2yePh8OnvbgK1" {
+            // QQ 的回调
+            return  TencentOAuth.handleOpen(url)
+        }
+
+     return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
