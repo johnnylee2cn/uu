@@ -100,7 +100,7 @@ class NotoBookViewController: UIViewController,UIImagePickerControllerDelegate,U
     
     func closeAddPicture(){
         let actionSheet = UIAlertController(title: "提示", message: "", preferredStyle: .alert)
-        let message = UIAlertAction(title: "最多选择三张图片", style: .destructive, handler: nil)
+        let message = UIAlertAction(title: "最多只能选择三张图片", style: .destructive, handler: nil)
         let cancel = UIAlertAction(title: "返回", style: .cancel, handler: nil)
         actionSheet.addAction(message)
         actionSheet.addAction(cancel)
