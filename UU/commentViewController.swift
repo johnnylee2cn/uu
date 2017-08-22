@@ -82,6 +82,7 @@ class commentViewController: UIViewController {
         self.view.addSubview(commentView)
     }
     
+    //设置文本框
     func setTextView(){
         textView = UITextView()
         textView.frame = CGRect(x: 7,y: 10,width: screenWidth - 95,height: 36)
@@ -93,6 +94,7 @@ class commentViewController: UIViewController {
         commentView.addSubview(textView)
     }
     
+    //设置登录按钮
     func setSendButton(){
         button = UIButton()
         button.setImage(UIImage(named:"发送-2"), for: .normal)
