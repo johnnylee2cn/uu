@@ -27,6 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         //qq登录初始化
         tencentAuth = TencentOAuth(appId: "1106056187", andDelegate: self)
+        let defaults = UserDefaults.standard
+        let data = defaults.data(forKey: "name")
+        if data?.count != nil{
+            
+            //根视图
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let sb = UIStoryboard(name: "Main", bundle:nil)
+            let vc = sb.instantiateViewController(withIdentifier: "tabbar")
+            
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+        }else{
+            //根视图
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let sb = UIStoryboard(name: "Main", bundle:nil)
+            let vc = sb.instantiateViewController(withIdentifier: "loginView")
+            
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+        }
                 
         UINavigationBar.appearance().barTintColor = UIColor.init(red: 65/245, green: 65/225, blue: 65/225, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
