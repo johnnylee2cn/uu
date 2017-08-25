@@ -64,9 +64,103 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AVOSCloud.setApplicationId("HLky7P8bcA401DqkJ0fkUmTG-gzGzoHsz", clientKey: "PXtYSKP31BKSGUyKBuLOajOO")
         
+        //本地推送
+        if #available(iOS 10.3, *){
+            //使用notification来管理通知
+            let center = UNUserNotificationCenter.current()
+            //监听回调事件
+            center.delegate = self
+            //使用下面代码得到授权
+            center.requestAuthorization(options: [.alert,.badge,.sound], completionHandler: { (granted, error) in
+                //如果用户允许
+                if granted{
+                    print("通知注册成功")
+                    //获取当前的通知设置，UNNotifacationSettings是只读对象，不能直接修改，只能通过一下方式获取
+                    center.getNotificationSettings(completionHandler: { (settings) in
+                        print("22222")
+                    })
+                }else{
+                    //不允许
+                    print("通知注册失败")
+                }
+                
+            })
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        registerNotification(alerTime: 2)
+
+        
                return true
         
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        let request = notification.request
+        let content = request.content
+        
+        let badge = content.badge
+        let body = content.body
+        let sound = content.sound
+        let subtitle = content.subtitle
+        let title = content.title
+        
+        if notification.request.trigger!.isKind(of: UNPushNotificationTrigger.self) {
+            print("远程通知:\(userInfo)")
+        } else {
+            print("本地通知")
+        }
+        completionHandler([.alert,.badge,.sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        let request = response.notification.request
+        let content = request.content
+        
+        let badge = content.badge
+        let body = content.body
+        let sound = content.sound
+        let subtitle = content.subtitle
+        let title = content.title
+        
+        if response.notification.request.trigger!.isKind(of: UNPushNotificationTrigger.self) {
+            print("远程通知:\(userInfo)")
+        } else {
+            print("本地通知")
+        }
+        completionHandler()
+        
+    }
+    
+    //本地推送
+    func registerNotification(alerTime:Int) {
+        
+        // 使用 UNUserNotificationCenter 来管理通知
+        let center = UNUserNotificationCenter.current()
+        
+        //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "Hello!", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
+        content.sound = UNNotificationSound.default()
+        
+        // 在 alertTime 后推送本地推送
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(alerTime), repeats: false)
+        let request = UNNotificationRequest(identifier: "FiveSecond", content: content, trigger: trigger)
+        //添加推送成功后的处理！
+        center.add(request) { (error:Error?) in
+            let alert = UIAlertController(title: "本地通知", message: "成功添加推送", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(cancel)
+            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    //qq登录到代理方法
+
     
     //qq登录到代理方法
     func tencentDidLogin() {
