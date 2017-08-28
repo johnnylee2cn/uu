@@ -44,6 +44,15 @@ class registeredViewController: UIViewController {
         madeLine()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        name.delegate = nil
+        pwd.delegate = nil
+        pwdtwice.delegate = nil
+        pwdProblem.delegate = nil
+        pwdProblemAnswer.delegate = nil
+        
+    }
+    
     //文本框下面的线条
     func madeLine(){
         
