@@ -196,6 +196,7 @@ class LoginViewController: UIViewController,UIViewControllerTransitioningDelegat
    
     //账号密码判断
     func verificationLogin(){
+        var loginJudgment = false
         for i in 0..<self.login.count{
             //账号密码做判断
             if self.userName.text == self.login[i]["userName"] as? String && self.userPassword.text == self.login[i]["userPwd"] as? String{
@@ -204,15 +205,31 @@ class LoginViewController: UIViewController,UIViewControllerTransitioningDelegat
                 let lableData = NSKeyedArchiver.archivedData(withRootObject: self.userName.text ?? "未显示")
                 defaults.set(lableData, forKey: "name")
                 
+                
+                
                 //跳转
                 let sb = UIStoryboard(name: "Main", bundle:nil)
                 let vc = sb.instantiateViewController(withIdentifier: "tabbar")
-                vc.transitioningDelegate = self
+                
+                vc.transitioningDelegate = self//设置跳转动画
                 self.present(vc, animated: true, completion: nil)
+                loginJudgment = true
             }
         }
-        self.tishi.text = "用户名或者密码错误"
+        if loginJudgment == false{
+            self.userName.textColor = UIColor.red
+            self.userPassword.textColor = UIColor.red
+            shakeTest()
+        }
+
     }
+    
+    //抖动测试
+    func shakeTest(){
+        userName.shake(direction: .horizontal, times: 7, interval: 0.15, delta: Int(2.5), completion: nil)
+        userPassword.shake(direction: .vertical, times: 7, interval: 0.15, delta: Int(2.5), completion: nil)
+    }
+
     
     //用百度api拿到地址坐标
     func getPoint() {
