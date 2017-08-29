@@ -17,13 +17,16 @@ class ageSelecteViewController: UIViewController {
     @IBOutlet weak var dateSelect: UIDatePicker!
     
     @IBAction func selectButton(_ sender: UIButton) {
-            let dateComponentsFormatter = DateComponentsFormatter()
-            dateComponentsFormatter.unitsStyle = .full
-            dateComponentsFormatter.allowedUnits = [.year]
-            let autoFormattedDifference = dateComponentsFormatter.string(from: dateSelect.date, to: Date())
-      
-            dateBirthdayTextfield.text = autoFormattedDifference
-            delegate?.ageSelect(age: autoFormattedDifference!)
+        let dateComponentsFormatter = DateComponentsFormatter()
+        dateComponentsFormatter.unitsStyle = .full
+        dateComponentsFormatter.allowedUnits = [.year]
+        var autoFormattedDifference = dateComponentsFormatter.string(from: dateSelect.date, to: Date())
+        
+        
+        autoFormattedDifference?.remove(at: (autoFormattedDifference?.index(before: (autoFormattedDifference?.endIndex)!))!)
+        dateBirthdayTextfield.text = autoFormattedDifference! + "岁"
+        print(autoFormattedDifference)
+        delegate?.ageSelect(age: autoFormattedDifference! + "岁")
         
     }
     var delegate:ageResult?
